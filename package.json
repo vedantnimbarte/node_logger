@@ -1,7 +1,7 @@
 {
   "name": "@vedantnimbarte/node-logger",
   "version": "1.0.0",
-  "description": "A generic logger for all Xendit node applications",
+  "description": "A generic logger for all node applications",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
