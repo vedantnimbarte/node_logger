@@ -1,0 +1,26 @@
+openapi: 3.0.1
+info:
+  title: xsh-node-logger
+  description: xsh-node-logger
+  x-cortex-git:
+    github:
+      repository: xendit/xsh-node-logger
+  x-cortex-tag: xsh-node-logger
+  x-cortex-oncall:
+    pagerduty:
+      id: P52AGKU
+      type: SERVICE
+  x-cortex-owners:
+  - type: GROUP
+    name: xendit/xenoss
+  - type: SLACK
+    channel: xen-oss
+  x-cortex-dependency: []
+  x-cortex-service-groups:
+  - node
+  - lib
+  x-cortex-link:
+  - url: https://docs.google.com/document/d/1vDY3qVigoVCAMT969LeigM1K3Q0qake_B6D5npoXr7I/edit#heading=h.s6tqfgcj75rk
+    name: Xen-OSS
+    type: documentation
+    description: Documentation about xen OSS projects

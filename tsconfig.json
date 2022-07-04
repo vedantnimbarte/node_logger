@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "lib": ["es6"],
+    "types": ["node", "express"],
+    "allowJs": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "outDir": "./dist/",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*", "vendor/*"]
+    },
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es6",
+    "typeRoots": ["node_modules/@types"]
+  },
+  "exclude": ["clients", "coverage", "tests/*", "**/*.test.ts", "jest*"]
+}

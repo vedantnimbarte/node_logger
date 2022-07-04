@@ -1,0 +1,56 @@
+- pipeline: "Build and test on every PR and master commit"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "((refs/pull/\\d+)|(master))"
+  ref_type: "WILDCARD"
+  priority: "NORMAL"
+  fetch_all_refs: true
+  trigger_condition: "ALWAYS"
+  actions:
+  - action: "Execute: npm test"
+    type: "BUILD"
+    working_directory: "/buddy/xsh-node-logger"
+    docker_image_name: "library/node"
+    docker_image_tag: "12"
+    execute_commands:
+    - "export LC_ALL=C.UTF-8"
+    - "export LANG=C.UTF-8"
+    - ""
+    - "npm ci"
+    - "npm test"
+    - "npm run build"
+    volume_mappings:
+    - "/:/buddy/xsh-node-logger"
+    trigger_condition: "ALWAYS"
+    shell: "BASH"
+- pipeline: "Publish module to NPM"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "refs/tags/*"
+  ref_type: "WILDCARD"
+  priority: "NORMAL"
+  fetch_all_refs: true
+  trigger_condition: "ALWAYS"
+  actions:
+  - action: "Execute: npm & github publish"
+    type: "BUILD"
+    working_directory: "/buddy/xsh-node-logger"
+    docker_image_name: "library/node"
+    docker_image_tag: "12"
+    execute_commands:
+    - "npm ci"
+    - "npm test"
+    - ""
+    - "if [[ $BUDDY_EXECUTION_TAG != v$(node -p -e \"require('./package.json').version\") ]];"
+    - "then"
+    - "  echo \"Github release tag does not match package.json version tag\""
+    - "  exit 1"
+    - "fi"
+    - ""
+    - 'echo -ne "# npm registry config\n//registry.npmjs.org/:_authToken=$NPM_PUBLISH_TOKEN\n@boxbag:registry=https://registry.npmjs.org/\n\r# github registry config\n//npm.pkg.github.com/:_authToken=$GITHUB_REGISTRY_TOKEN\n@xendit:registry=https://npm.pkg.github.com/" >> .npmrc'
+    - "npm run build"
+    - "npm publish"
+    - sed -ie '/name/s/xendit/boxbag/' package.json
+    - "npm publish"
+    volume_mappings:
+    - "/:/buddy/xsh-node-logger"
+    trigger_condition: "ALWAYS"
+    shell: "BASH"
