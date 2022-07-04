@@ -1,5 +1,5 @@
 {
-  "name": "@xendit/xsh-node-logger",
+  "name": "@vedantnimbarte/node-logger",
   "version": "1.0.0",
   "description": "A generic logger for all Xendit node applications",
   "main": "dist/index.js",
@@ -30,14 +30,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xendit/xsh-node-logger.git"
+    "url": "git+https://github.com/vedantnimbarte/node_logger.git"
   },
   "author": "Xendit",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/xendit/xsh-node-logger/issues"
+    "url": "https://github.com/vedantnimbarte/node_logger/issues"
   },
-  "homepage": "https://github.com/xendit/xsh-node-logger#readme",
+  "homepage": "https://github.com/vedantnimbarte/node_logger#readme",
   "devDependencies": {
     "@types/express": "^4.17.6",
     "@types/flush-write-stream": "^1.0.0",
